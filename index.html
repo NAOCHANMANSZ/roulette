@@ -7,7 +7,7 @@
 <body>
 
   <h1>なんか決めるときのルーレット</h1>
-  <h4>「,」で区切ってね</h4>
+  <h4>「,」で区切ってくれよな</h4>
   <input type="text" id="userInput" value="大大吉,大吉,中吉,小吉,吉,末吉,凶" style="width: 300px;">
 
   <h3 id="result">？</h3>
@@ -24,7 +24,7 @@
         const results = inputText.split(',')
         const randomIndex = Math.floor(Math.random() * results.length);
         document.getElementById('result').textContent = results[randomIndex];
-      },200);
+      },300);
     }
   </script>
 
