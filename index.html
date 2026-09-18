@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>何か決めるときのルーレット</title>
+</head>
+<body>
+
+  <h1>なんか決めるときのルーレット</h1>
+  <p>「,」で区切ってね:</p>
+  <input type="text" id="userInput" value="大大吉,大吉,中吉,小吉,吉,末吉,凶" style="width: 300px;">
+
+  <p id="result">？</p>
+
+  <button onclick="drawOmikuji()">押せ！！</button>
+
+  <script>
+    function drawOmikuji() {
+
+      document.getElementById('result').textContent = '';
+      
+      setTimeout(function(){
+        const inputText = document.getElementById('userInput').value;
+        const results = inputText.split(',')
+        const randomIndex = Math.floor(Math.random() * results.length);
+        document.getElementById('result').textContent = results[randomIndex];
+      },200);
+    }
+  </script>
+
+</body>
+</html>
