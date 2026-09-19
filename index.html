@@ -2,28 +2,77 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>何か決めるときのルーレット</title>
+  <title>何か決めるときのルーレットщ(ﾟДﾟщ)ｶﾓｰﾝ</title>
 </head>
 <body>
 
   <h1>なんか決めるときのルーレット</h1>
-  <h4>「,」で区切ってくれよな</h4>
-  <input type="text" id="userInput" value="大大吉,大吉,中吉,小吉,吉,末吉,凶" style="width: 300px;">
+  <h4>改行で区切ってくれよな！！</h4>
+  <textarea id="userInput" rows="8" style="width: 300px; height: 200px">
+大吉
+吉
+中吉
+小吉
+末吉
+凶
+大凶</textarea>
 
   <h3 id="result">？</h3>
 
   <button onclick="drawOmikuji()">押せ！！</button>
 
+  <hr>
+  <div class="header-container">
+    <h2>履歴</h2>
+    <button onclick="clearList()">履歴削除</button>
+  </div>
+
+  <style>
+    .header-container{
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 0px 12px;
+    }
+  </style>
+
+  <ul id="historyList"></ul>
+
   <script>
+    let history = [];
+
+    function clearList(){
+      history = [];
+      
+      const historyList = document.getElementById('historyList');
+      historyList.innerHTML = '';
+    }
+
     function drawOmikuji() {
 
-      document.getElementById('result').textContent = 'щ(ﾟДﾟщ)ｶﾓｰﾝ';
+      document.getElementById('result').textContent = '-';
       
       setTimeout(function(){
         const inputText = document.getElementById('userInput').value;
-        const results = inputText.split(',')
+        const results = inputText
+        .split('\n')
+        .map(item => item.trim())
+        .filter(item => item !== '');
         const randomIndex = Math.floor(Math.random() * results.length);
+        const selectedResult = results[randomIndex];
+        
         document.getElementById('result').textContent = results[randomIndex];
+        
+        history.unshift(selectedResult);
+
+        const historyList = document.getElementById('historyList')
+        historyList.innerHTML = '';
+
+        history.forEach(function(item) {
+          const li = document.createElement('li')
+          li.textContent = item
+          historyList.appendChild(li);
+        });
       },300);
     }
   </script>
